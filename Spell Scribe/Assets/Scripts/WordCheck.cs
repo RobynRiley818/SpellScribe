@@ -130,7 +130,7 @@ public class WordCheck : MonoBehaviour {
     {
         hitAll = areAllHit();
 
-        if(areEqual(hit, prev))
+        if (areEqual(hit, prev))
         {
             noneHit++;
         }
@@ -148,58 +148,53 @@ public class WordCheck : MonoBehaviour {
             }
             else
             {
-                TutorialPart2.finished = true;
-            }
-        }
-        else
-        {
-            switch (GameManager.current)
-            {
-                case GameManager.Difficulty.Easy:
-                    foreach (GameObject i in col)
-                    {
-                        if (i != null)
-                        {
-                            if (i.GetComponent<colObject>().hit)
-                            {
-                                i.GetComponent<SpriteRenderer>().enabled = false;
-                                i.GetComponent<CircleCollider2D>().enabled = false;
-                            }
-                        }
-                    }
-                    break;
-                case GameManager.Difficulty.Normal:
-                    if(noneHit > 2)
-                    {
+                switch (GameManager.current)
+                {
+                    case GameManager.Difficulty.Easy:
                         foreach (GameObject i in col)
                         {
                             if (i != null)
                             {
-                                if (!i.GetComponent<colObject>().hit)
+                                if (i.GetComponent<colObject>().hit)
                                 {
-                                    i.GetComponent<SpriteRenderer>().enabled = true;
-
-                                    i.GetComponent<CircleCollider2D>().enabled = true;
-                                    i.GetComponent<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f, .4f);
+                                    i.GetComponent<SpriteRenderer>().enabled = false;
+                                    i.GetComponent<CircleCollider2D>().enabled = false;
                                 }
                             }
                         }
-                    }
-                    break;
-                case GameManager.Difficulty.Hard:
-                    break;
-            }
+                        break;
+                    case GameManager.Difficulty.Normal:
+                        if (noneHit > 2)
+                        {
+                            foreach (GameObject i in col)
+                            {
+                                if (i != null)
+                                {
+                                    if (!i.GetComponent<colObject>().hit)
+                                    {
+                                        i.GetComponent<SpriteRenderer>().enabled = true;
 
-            prev.Clear();
-            for (int i = 0; i < hit.Count; i++)
-            {
-                prev.Add(hit[i]);
+                                        i.GetComponent<CircleCollider2D>().enabled = true;
+                                        i.GetComponent<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f, .4f);
+                                    }
+                                }
+                            }
+                        }
+                        break;
+                    case GameManager.Difficulty.Hard:
+                        break;
+                }
+
+                prev.Clear();
+                for (int i = 0; i < hit.Count; i++)
+                {
+                    prev.Add(hit[i]);
+                }
+
             }
 
         }
-        
     }
-
 
     bool areEqual(List<bool> l1, List<bool> l2)
     {
