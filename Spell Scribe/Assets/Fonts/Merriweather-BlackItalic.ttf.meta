@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 6a7aff293de8a7f478f52b95e0381ce2
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Merriweather Black
+  fontNames:
+  - Merriweather Black
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 5a859e892ac3579419c4ebcdf06b849f, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

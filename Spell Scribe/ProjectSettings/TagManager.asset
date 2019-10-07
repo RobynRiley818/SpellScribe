@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Outline
+  - Word
+  - Enemy
+  - Ice Pool
+  - Poison Pool
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Enemies
+  - Marker
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Drawing Lines
+    uniqueID: 1694423355
+    locked: 0
+  - name: Flight
+    uniqueID: 1401320973
+    locked: 0
+  - name: UI Stuff
+    uniqueID: 152161715
+    locked: 0
+  - name: Fill Line
+    uniqueID: 618715763
+    locked: 0
