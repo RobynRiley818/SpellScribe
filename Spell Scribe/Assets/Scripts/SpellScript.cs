@@ -10,7 +10,6 @@ public class SpellScript : MonoBehaviour
     public GameObject select, writing;
 
     //The list of possible words the spell can be tied to
-    public GameObject[] words;
     public GameObject word;
 
     public GameObject manager;
@@ -36,8 +35,23 @@ public class SpellScript : MonoBehaviour
 
     public void setWord()
     {
-        int num = Random.Range(0, words.Length);
-        word = words[num];
+        int num;
+        switch (GameManager.current)
+        {
+
+            case GameManager.Difficulty.Easy:
+                num = Random.Range(0, manager.GetComponent<GameManager>().easyWords.Length);
+                word = manager.GetComponent<GameManager>().easyWords[num];
+                break;
+            case GameManager.Difficulty.Normal:
+                num = Random.Range(0, manager.GetComponent<GameManager>().normalWords.Length);
+                word = manager.GetComponent<GameManager>().normalWords[num];
+                break;
+            case GameManager.Difficulty.Hard:
+                num = Random.Range(0, manager.GetComponent<GameManager>().hardWords.Length);
+                word = manager.GetComponent<GameManager>().hardWords[num];
+                break;
+        }
     }
 
     private void OnMouseDown()

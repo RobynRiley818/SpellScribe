@@ -79,6 +79,15 @@ MonoBehaviour:
   bad: {fileID: 0}
   teaching: 0
   canWrite: 0
+  easyWords:
+  - {fileID: 396997416651660132, guid: cf82c1cff6e138f4096f344990e8fb64, type: 3}
+  - {fileID: 3743236849029342173, guid: eb319ecd7fef9214384373df72a516db, type: 3}
+  normalWords:
+  - {fileID: 8555557505367245698, guid: b9fe6820b023169409d8ac3cb3d04bdf, type: 3}
+  - {fileID: 8225899422365191149, guid: 2a16bd68dbd823e49a595aff5249f5cc, type: 3}
+  hardWords:
+  - {fileID: 8757521436460929447, guid: 3fcec07e0b81d08489b5fe8d58b3fa6a, type: 3}
+  - {fileID: 4900825897635767467, guid: 791b4a937af14d44eb410db3fb7aca3c, type: 3}
   markers: 0
   fillLine: {fileID: 8534717317676344768, guid: cbca2102939fe1b4295eac95c97d5bdf,
     type: 3}

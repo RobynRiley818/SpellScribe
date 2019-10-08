@@ -54,6 +54,8 @@ public class GameManager : MonoBehaviour {
 
     public bool canWrite;
 
+    public GameObject[] easyWords, normalWords, hardWords;
+
 
     public void setDifficulty(Difficulty dif)
     {
