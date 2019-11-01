@@ -103,37 +103,37 @@ public class EnemiesInterface : MonoBehaviour {
 
     private void Update()
     {
-        if (!isHit)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, next.transform.position, pace * Time.deltaTime);
-        }
-        if (speedy)
-        {
-            transform.up = (next.transform.position - transform.position);
-        }
-        else
-        {
-            transform.up = -(next.transform.position - transform.position);
-        }
-        if (transform.position.Equals(next.transform.position))
-        {
-            if (path.Count == 0)
-            {
-                if (manager.GetComponent<GameManager>().totalScore > 0)
-                {
-                    manager.GetComponent<GameManager>().totalScore -= reward;
-                }
-                manager.GetComponent<GameManager>().enemiesEscaped++;
-                Dies();
-                Destroy(transform.parent.gameObject);
+        //if (!isHit)
+        //{
+        //    transform.position = Vector2.MoveTowards(transform.position, next.transform.position, pace * Time.deltaTime);
+        //}
+        //if (speedy)
+        //{
+        //    transform.up = (next.transform.position - transform.position);
+        //}
+        //else
+        //{
+        //    transform.up = -(next.transform.position - transform.position);
+        //}
+        //if (transform.position.Equals(next.transform.position))
+        //{
+        //    if (path.Count == 0)
+        //    {
+        //        if (manager.GetComponent<GameManager>().totalScore > 0)
+        //        {
+        //            manager.GetComponent<GameManager>().totalScore -= reward;
+        //        }
+        //        manager.GetComponent<GameManager>().enemiesEscaped++;
+        //        Dies();
+        //        Destroy(transform.parent.gameObject);
 
-            }
-            else
-            {
-                next = path.ToArray()[0];
-                path.Dequeue();
-            }
-        }
+        //    }
+        //    else
+        //    {
+        //        next = path.ToArray()[0];
+        //        path.Dequeue();
+        //    }
+        //}
 
         if (poisoned)
         {

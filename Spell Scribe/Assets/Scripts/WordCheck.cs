@@ -141,14 +141,17 @@ public class WordCheck : MonoBehaviour {
 
         if (hitAll && DrawingManager.stayed)
         {
-            if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level 1") || SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Tutorial"))
-            {
-                noneHit = 0;
-                GameManager.spellReady = true;
-            }
-            else
-            {
-                switch (GameManager.current)
+            //if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level 1") || SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Tutorial"))
+            //{
+            //    noneHit = 0;
+            //    GameManager.spellReady = true;
+            //}
+            //else
+            //{
+
+            noneHit = 0;
+            GameManager.spellReady = true;
+            switch (GameManager.current)
                 {
                     case GameManager.Difficulty.Easy:
                         foreach (GameObject i in col)
@@ -191,7 +194,7 @@ public class WordCheck : MonoBehaviour {
                     prev.Add(hit[i]);
                 }
 
-            }
+           // }
 
         }
     }

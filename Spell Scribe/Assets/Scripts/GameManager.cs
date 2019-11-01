@@ -198,7 +198,7 @@ public class GameManager : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            SceneManager.LoadScene(6);
+            SceneManager.LoadScene(4);
         }
         if(totalScore < 0)
         {
@@ -223,8 +223,8 @@ public class GameManager : MonoBehaviour {
                 menu.Stop();
             }
         }
-        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level 1") || SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Tutorial"))
-
+        //if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level 1") || SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Tutorial"))
+        if (SceneManager.GetActiveScene() != SceneManager.GetSceneByBuildIndex(0) || SceneManager.GetActiveScene() != SceneManager.GetSceneByBuildIndex(1))
         {
             /*if (spellEffect == null)
             { 
@@ -306,7 +306,7 @@ public class GameManager : MonoBehaviour {
                 spellChosen = false;
                 word = ins = null;
                 filled = false;
-                if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level 1"))
+                if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("DragonScene") || SceneManager.GetActiveScene() == SceneManager.GetSceneByName("KnightScene") || SceneManager.GetActiveScene() == SceneManager.GetSceneByName("GoblinScene"))
                 {
                     game.Play();
                     tut.Stop();

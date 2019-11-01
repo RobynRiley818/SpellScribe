@@ -11,22 +11,34 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Difficulty Select.unity
     guid: c4af410b48761f34f870b073cb6abe28
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Tutorial.unity
     guid: 0bb5c0361c0afc8479b957b17e2b119d
   - enabled: 0
-    path: Assets/Scenes/Tutorial Scenes/Tutorial 1.unity
-    guid: 1af7740674d89f44ca255b173afeee2d
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
-    path: Assets/Scenes/Tutorial Scenes/Tutorial 2.unity
-    guid: db817840b61de564bb75454aba0f0231
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
-    path: Assets/Scenes/Tutorial Scenes/Tutorial 3.unity
-    guid: 3240de78c8f4ef743b50267167b8bd77
-  - enabled: 1
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
     path: Assets/Scenes/Level 1.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Score Sceen.unity
     guid: 9bf451f7f13b41f4781dbb8b1e6eee28
+  - enabled: 1
+    path: Assets/Scenes/PathSelect.unity
+    guid: 6285a04296e55de4bb41490878e4ac55
+  - enabled: 1
+    path: Assets/Scenes/DragonScene.unity
+    guid: 5957f1b7e953de54c80576ef1487c1f3
+  - enabled: 1
+    path: Assets/Scenes/GoblinScene.unity
+    guid: da7d6b8f89fcc6440944a6dc25bd8dfd
+  - enabled: 1
+    path: Assets/Scenes/KnightScene.unity
+    guid: 9cd3181cfe4af5b4088655e490c8085a
   m_configObjects: {}
