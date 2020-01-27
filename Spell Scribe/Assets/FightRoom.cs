@@ -23,6 +23,11 @@ public class FightRoom : MonoBehaviour
     private IEnumerator Reset()
     {
         yield return new WaitForSeconds(1.5f);
-        SceneManager.LoadScene(0);
+        //SceneManager.LoadScene(0);
+        GameObject map = GameObject.FindGameObjectWithTag("Map");
+        map.GetComponent<Map>().MapEnable(true);
+        map.GetComponent<Map>().startingRoom.gameObject.GetComponent<DeafultRoom>().RoomDone();
+        SceneManager.LoadScene("Test Map");
+        
     }
 }

@@ -9,6 +9,8 @@ TagManager:
   - Enemy
   - Ice Pool
   - Poison Pool
+  - Room
+  - Map
   layers:
   - Default
   - TransparentFX

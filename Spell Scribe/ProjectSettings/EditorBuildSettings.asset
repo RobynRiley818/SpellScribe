@@ -30,6 +30,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Score Sceen.unity
     guid: 9bf451f7f13b41f4781dbb8b1e6eee28
   - enabled: 1
+    path: Assets/Scenes/Test Map.unity
+    guid: 8beed6562f19a3a48b0a333edb0cb164
+  - enabled: 0
     path: Assets/Scenes/PathSelect.unity
     guid: 6285a04296e55de4bb41490878e4ac55
   - enabled: 1

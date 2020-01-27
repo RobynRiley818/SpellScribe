@@ -1000,6 +1000,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bubbles_Sheet_0
       objectReference: {fileID: 0}
+    - target: {fileID: 6304419789929013066, guid: 48c30b8cdc77ad2429e8dc7ea905053a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 382451065578852434, guid: 48c30b8cdc77ad2429e8dc7ea905053a,
         type: 3}
       propertyPath: m_LocalPosition.x
