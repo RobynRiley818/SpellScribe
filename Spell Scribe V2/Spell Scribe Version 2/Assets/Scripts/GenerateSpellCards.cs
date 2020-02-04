@@ -35,6 +35,7 @@ public class GenerateSpellCards : MonoBehaviour
 
                 ins.GetComponent<RectTransform>().localPosition = cardPositions[i];
 
+
                 ins.GetComponentInChildren<TextMeshProUGUI>().text = spell;
 
                 cards.Add(ins);
