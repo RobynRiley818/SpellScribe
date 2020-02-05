@@ -15,8 +15,6 @@ public class GenerateWriting : MonoBehaviour
 
     public LineRenderer current;
 
-    List<LineRenderer> drawn;
-
     Vector3 mousePos;
 
     bool close;
@@ -24,7 +22,6 @@ public class GenerateWriting : MonoBehaviour
     private void Start()
     {
         Input.simulateMouseWithTouches = true;
-        drawn = new List<LineRenderer>();
     }
 
     private void Update()
@@ -42,7 +39,6 @@ public class GenerateWriting : MonoBehaviour
                         if (!close && current != null)
                         {
                             current = Instantiate(good, transform).GetComponent<LineRenderer>();
-                            drawn.Add(current);
                             index = 0;
                         }
                         close = true;
@@ -52,7 +48,6 @@ public class GenerateWriting : MonoBehaviour
                         if (close && current != null)
                         {
                             current = Instantiate(bad, transform).GetComponent<LineRenderer>();
-                            drawn.Add(current);
                             index = 0;
                         }
                         close = false;
@@ -64,11 +59,9 @@ public class GenerateWriting : MonoBehaviour
                         {
                             case true:
                                 current = Instantiate(good, transform).GetComponent<LineRenderer>();
-                                drawn.Add(current);
                                 break;
                             case false:
                                 current = Instantiate(bad, transform).GetComponent<LineRenderer>();
-                                drawn.Add(current);
                                 break;
                         }
                     }
@@ -98,13 +91,11 @@ public class GenerateWriting : MonoBehaviour
                         if (Vector2.Distance(touch.position, word.ClosestPoint(touch.position)) <= goodDistance)
                         {
                             current = Instantiate(good, transform).GetComponent<LineRenderer>();
-                            drawn.Add(current);
                             close = true;
                         }
                         else
                         {
                             current = Instantiate(bad, transform).GetComponent<LineRenderer>();
-                            drawn.Add(current);
                             close = false;
                         }
                     }
@@ -116,7 +107,6 @@ public class GenerateWriting : MonoBehaviour
                             if (!close && current != null)
                             {
                                 current = Instantiate(good, transform).GetComponent<LineRenderer>();
-                                drawn.Add(current);
                                 index = 0;
                             }
                             close = true;
@@ -126,7 +116,6 @@ public class GenerateWriting : MonoBehaviour
                             if (close && current != null)
                             {
                                 current = Instantiate(bad, transform).GetComponent<LineRenderer>();
-                                drawn.Add(current);
                                 index = 0;
                             }
                             close = false;
@@ -144,22 +133,6 @@ public class GenerateWriting : MonoBehaviour
                 }
             }
         }
-        else if(StateManager.currentState == StateManager.GameState.WordFill)
-        {
-            StartCoroutine(fillWord());
-        }
-    }
-
-    IEnumerator fillWord()
-    {
-        //Word Fills will go here, if we decide to continue using that effect
-        yield return null;
-        for(int i = 0; i < drawn.Count; i++)
-        {
-            Destroy(drawn[i]);
-        }
-        drawn.Clear();
-
-        StateManager.currentState = StateManager.GameState.SpellCast;
+        
     }
 }
