@@ -21,10 +21,13 @@ public class GenerateWriting : MonoBehaviour
 
     bool close;
 
+    SpellManager spellManager;
+
     private void Start()
     {
         Input.simulateMouseWithTouches = true;
         drawn = new List<LineRenderer>();
+        spellManager = FindObjectOfType<SpellManager>();
     }
 
     private void Update()
@@ -161,5 +164,6 @@ public class GenerateWriting : MonoBehaviour
         drawn.Clear();
 
         StateManager.currentState = StateManager.GameState.SpellCast;
+        spellManager.SpellFinished();
     }
 }

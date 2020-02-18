@@ -12,36 +12,36 @@ public class GenerateSpellCards : MonoBehaviour
 
     public GameObject spellcard;
 
+    private BaseCard[] currentHand;
+
+    private Deck spellDeck;
+
     private void Start()
     {
-        StateManager.currentState = StateManager.GameState.SpellSelect;
+        spellDeck = FindObjectOfType<Deck>();
     }
 
     public void Draw()
     {
         if (StateManager.currentState == StateManager.GameState.SpellSelect)
         {
-            foreach (GameObject i in cards)
-            {
-                Destroy(i);
-            }
-            cards.Clear();
+            currentHand = spellDeck.drawNewHand();
+            CreateHand();
+        }
+    }
 
-            for (int i = 0; i < 5; i++)
-            {
-                string spell = wordOptions[Random.Range(0, 3)];
+    public void Test()
+    {
+        Draw();
+    }
 
-                GameObject ins = Instantiate(spellcard, FindObjectOfType<Canvas>().transform);
+    private void CreateHand()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            GameObject ins = Instantiate(currentHand[i].gameObject, FindObjectOfType<Canvas>().gameObject.transform);
 
-                ins.GetComponent<RectTransform>().localPosition = cardPositions[i];
-
-
-                ins.GetComponentInChildren<TextMeshProUGUI>().text = spell;
-
-                cards.Add(ins);
-            }
-
-            StateManager.currentState = StateManager.GameState.SpellSelect;
+            ins.GetComponent<RectTransform>().localPosition = cardPositions[i];
         }
     }
 }

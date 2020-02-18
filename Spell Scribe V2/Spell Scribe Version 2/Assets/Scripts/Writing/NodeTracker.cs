@@ -29,11 +29,16 @@ public class NodeTracker : MonoBehaviour
 
     private void FixedUpdate()
     {
-
         if(nodeIndex >= nodes.Count)
         {
             StateManager.currentState = StateManager.GameState.WordFill;
         }
+
+        if(nodeIndex >= nodes.Count)
+        {
+            nodeIndex = nodes.Count - 1;
+        }
+
         if (!nodes[nodeIndex].gameObject.activeSelf)
         {
             foreach (GameObject i in nodes)

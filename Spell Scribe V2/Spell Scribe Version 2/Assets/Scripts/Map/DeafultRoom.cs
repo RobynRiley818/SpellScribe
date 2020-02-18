@@ -24,8 +24,6 @@ public class DeafultRoom : MonoBehaviour
         Color temp = sr.color;
         temp.a = .5f;
         sr.color = temp;
-
-        thisRoom = "GoblinScene";
         AssignRandomRoom();
 
         map = FindObjectOfType<Map>().gameObject;

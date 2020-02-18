@@ -19,5 +19,4 @@ public class SelectSpell : MonoBehaviour
         spellSet.Spawn(GetComponentInChildren<TextMeshProUGUI>().text);
         spellSet.spellDamage = damage;
     }
-
 }
