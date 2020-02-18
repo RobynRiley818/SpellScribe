@@ -10,6 +10,7 @@ public class BaseCard : MonoBehaviour
     private GenerateSpellCards cardManager;
 
     public TextMeshProUGUI text;
+    public TextMeshProUGUI damageText;
     public int damage;
     // Start is called before the first frame update
     void Start()
@@ -17,6 +18,7 @@ public class BaseCard : MonoBehaviour
         spellManage = FindObjectOfType<SpellManager>();
         cardManager = FindObjectOfType<GenerateSpellCards>();
         text.text = word;
+        damageText.text = "" + damage;
     }
 
     private void OnMouseDown()

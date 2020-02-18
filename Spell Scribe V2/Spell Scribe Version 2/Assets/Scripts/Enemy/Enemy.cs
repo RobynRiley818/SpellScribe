@@ -31,6 +31,7 @@ public abstract class Enemy : MonoBehaviour
     public Slider healthBar;
     protected Player player;
     TurnManager turnManager;
+    public int damage = 1;
 
     private void Start()
     {

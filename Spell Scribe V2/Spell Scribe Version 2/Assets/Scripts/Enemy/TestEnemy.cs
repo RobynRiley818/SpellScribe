@@ -8,7 +8,7 @@ public class TestEnemy : Enemy
     {
         //Insert attack logic and attack animations
 
-        player.TakeDamage(1);
+        player.TakeDamage(damage);
         Invoke("EndEnemyTurn", 1);
 
     }

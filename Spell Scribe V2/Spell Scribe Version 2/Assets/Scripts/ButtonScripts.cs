@@ -28,4 +28,12 @@ public class ButtonScripts : MonoBehaviour
         turnManage.map.MapEnable(true);
         turnManage.map.GetComponent<Map>().startingRoom.gameObject.GetComponent<DeafultRoom>().RoomDone();
     }
+
+    public void ReloadGame()
+    {
+        Map map = FindObjectOfType<Map>();
+        Destroy(playerDeck);
+        Destroy(map.gameObject);
+        SceneManager.LoadScene(0);
+    }
 }

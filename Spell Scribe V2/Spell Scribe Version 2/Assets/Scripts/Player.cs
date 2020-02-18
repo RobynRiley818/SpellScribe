@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     public Slider healthBar;
     private GenerateSpellCards spellCards;
 
+   public GameObject losePanel;
+
     private void Start()
     {
         healthBar.maxValue = health;
@@ -28,7 +30,8 @@ public class Player : MonoBehaviour
 
     private void PlayerDied()
     {
-
+        losePanel.SetActive(true);
+        Destroy(this.gameObject);
     }
 
     public void StartPlayerTurn()
