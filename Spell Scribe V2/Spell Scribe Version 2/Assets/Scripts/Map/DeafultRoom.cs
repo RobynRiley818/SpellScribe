@@ -77,10 +77,18 @@ public class DeafultRoom : MonoBehaviour
         if (isSelectable)
         {
             NextRoom();
-            map.GetComponent<Map>().startingRoom.GetComponent<DeafultRoom>().startingRoom = false;
-            map.GetComponent<Map>().startingRoom = this.gameObject;
-            map.GetComponent<Map>().MapEnable(false);
-            SceneManager.LoadScene(thisRoom);
+            Invoke("TurnOffMap", 1);
+
+            if (Loading.instance)
+            {
+                Loading.instance.Show(SceneManager.LoadSceneAsync(thisRoom));
+            }
+
+            else
+            {
+                //SceneManager.LoadScene(thisRoom);
+            }
+
         }
     }
 
@@ -108,6 +116,13 @@ public class DeafultRoom : MonoBehaviour
         Debug.Log("Loading Main Menu");
         SceneManager.LoadScene("Main Menu");
         Destroy(this.gameObject.transform.parent.gameObject);
+    }
+
+    private void TurnOffMap()
+    {
+        map.GetComponent<Map>().startingRoom.GetComponent<DeafultRoom>().startingRoom = false;
+        map.GetComponent<Map>().startingRoom = this.gameObject;
+        map.GetComponent<Map>().MapEnable(false);
     }
 
 }

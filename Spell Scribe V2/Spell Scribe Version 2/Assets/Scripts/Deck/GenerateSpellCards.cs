@@ -40,7 +40,7 @@ public class GenerateSpellCards : MonoBehaviour
     {
         for (int i = 0; i < 5; i++)
         {
-            GameObject ins = Instantiate(currentHand[i].gameObject, FindObjectOfType<Canvas>().gameObject.transform);
+            GameObject ins = Instantiate(currentHand[i].gameObject, GameObject.FindGameObjectWithTag("MainCanvas").transform);
 
             ins.GetComponent<RectTransform>().localPosition = cardPositions[i];
             ins.SetActive(true);
