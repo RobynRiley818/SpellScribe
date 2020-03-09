@@ -33,8 +33,11 @@ public abstract class Enemy : MonoBehaviour
     TurnManager turnManager;
     public int damage = 1;
 
+    SoundEffects soundEffects;
+
     private void Start()
     {
+        soundEffects = FindObjectOfType<SoundEffects>();
         healthBar.maxValue = health;
         healthBar.value = health;
         player = FindObjectOfType<Player>();
@@ -52,6 +55,7 @@ public abstract class Enemy : MonoBehaviour
     {
         health -= dam;
         healthBar.value = health;
+        soundEffects.PlaySound("dewHurt");
         if(health <= 0)
         {
             EnemyDies();

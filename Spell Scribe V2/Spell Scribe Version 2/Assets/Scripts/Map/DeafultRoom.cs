@@ -38,6 +38,7 @@ public class DeafultRoom : MonoBehaviour
     }
     public void RoomDone()
     {
+        sr.color = Color.white;
         if (finalRoom)
         {
             Invoke("Restart", 1);
@@ -45,7 +46,6 @@ public class DeafultRoom : MonoBehaviour
         }
         for (int i = 0; i < nextRooms.Length; i++)
         {
-            Debug.Log("Test");
             nextRooms[i].GetComponent<DeafultRoom>().Selectable(true);
             SpriteRenderer temp = nextRooms[i].GetComponent<SpriteRenderer>();
             Color tempColor = temp.color;
@@ -56,7 +56,6 @@ public class DeafultRoom : MonoBehaviour
 
     public void NextRoom()
     {
-        Debug.Log("Next Room");
         GameObject[] allRooms = GameObject.FindGameObjectsWithTag("Room");
         foreach(GameObject a in allRooms)
         {
@@ -77,15 +76,11 @@ public class DeafultRoom : MonoBehaviour
     {
         if (isSelectable)
         {
-           
-            Debug.Log(thisRoom);
             NextRoom();
             map.GetComponent<Map>().startingRoom.GetComponent<DeafultRoom>().startingRoom = false;
             map.GetComponent<Map>().startingRoom = this.gameObject;
             map.GetComponent<Map>().MapEnable(false);
             SceneManager.LoadScene(thisRoom);
-       
-            
         }
     }
 

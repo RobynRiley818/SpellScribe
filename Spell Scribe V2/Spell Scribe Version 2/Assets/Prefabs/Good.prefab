@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2614530569902807399}
   - component: {fileID: 2614530569902807396}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Good
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -66,15 +66,15 @@ LineRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
+  m_SortingLayerID: -666312023
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.2
+    widthMultiplier: 0.12464579
     widthCurve:
       serializedVersion: 2
       m_Curve:

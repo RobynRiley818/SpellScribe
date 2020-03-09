@@ -15,6 +15,7 @@ public class MarkerNode : MonoBehaviour
     {
         if (Input.GetMouseButton(0) && StateManager.currentState == StateManager.GameState.Writing)
         {
+            Debug.Log("Over Node");
             if (tracker.nodeIndex < tracker.nodes.Count)
             {
                 tracker.nodeIndex++;

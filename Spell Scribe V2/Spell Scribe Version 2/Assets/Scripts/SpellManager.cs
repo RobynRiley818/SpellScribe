@@ -20,23 +20,27 @@ public class SpellManager : MonoBehaviour
 
     private bool testFix = false;
 
+    [HideInInspector] public SecondarySpellEffects secondary;
+
+    public GameObject currentCard;
+
+    private Deck deck;
+
+
+    [HideInInspector] public GameObject spellEffect;
+    private Vector2 spellPosition = new Vector2(0, -3);
 
     private void Start()
     {
         enemy = FindObjectOfType<Enemy>();
         writingMan = FindObjectOfType<GenerateWriting>();
         enMan = FindObjectOfType<EnemyManager>();
+        deck = FindObjectOfType<Deck>();
     }
 
     GameObject wordInstance;
     public void Spawn(string word)
     {
-        //foreach(GameObject k in GetComponent<GenerateSpellCards>().cards)
-        //{
-        //    Destroy(k.gameObject);
-
-        //}
-        //GetComponent<GenerateSpellCards>().cards.Clear();
 
         for (int i = 0; i < words.Count; i++)
         {
@@ -44,13 +48,14 @@ public class SpellManager : MonoBehaviour
             {
                 wordInstance = Instantiate(words[i], wordPos, Quaternion.identity);
                 writingMan.word = wordInstance.GetComponentInChildren<EdgeCollider2D>();
+                //writingMan.word = wordInstance.GetComponentInChildren<BoxCollider2D>();
                 break;
             }
         }
 
         cards = FindObjectsOfType<BaseCard>();
 
-        foreach(BaseCard card in cards)
+        foreach (BaseCard card in cards)
         {
             card.gameObject.SetActive(false);
         }
@@ -64,25 +69,24 @@ public class SpellManager : MonoBehaviour
         if (StateManager.currentState == StateManager.GameState.SpellCast & !testFix)
         {
             testFix = true;
-            StateManager.currentState = StateManager.GameState.EnemyTurn;
-            //if (enMan.currentEn != null)
-            //{
-            //    enMan.currentEn.health -= spellDamage;
+            GameObject temp = Instantiate(spellEffect);
+            temp.transform.position = spellPosition;
 
-            //    //Spell VFX will go here
-            //}
+            secondary.SpellEffect();
 
-            enemy.TakeDamage(spellDamage);
             Destroy(wordInstance);
             wordInstance = null;
-
-            FindObjectOfType<Enemy>().StartEnemyTurn();
-
-            Debug.Log("Trying to Kill Cards");
-            foreach (BaseCard card in cards)
-            {
-                Destroy(card.gameObject);
-            }
         }
     }
+
+    public void SpellDamage()
+    {
+        StateManager.currentState = StateManager.GameState.EnemyTurn;
+        enemy.TakeDamage(spellDamage);
+        FindObjectOfType<Enemy>().StartEnemyTurn();
+
+        deck.DiscardCard(currentCard.GetComponent<BaseCard>());
+    }
 }
+
+
