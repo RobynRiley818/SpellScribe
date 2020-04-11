@@ -14,13 +14,13 @@ public class BaseCard : MonoBehaviour
     public TextMeshProUGUI secondaryDescription;
     public int damage;
 
-    public enum SecondaryEffects {heal, burn, stun}
-    [Range(1, 3)] public int spellLevel = 1; 
+    public enum SecondaryEffects { heal, burn, stun }
+    [Range(1, 3)] public int spellLevel = 1;
 
     public SecondaryEffects thisSpellsSecondaryEffect;
     SecondarySpellEffects thisSecondaryEffect;
 
-    public enum SpellVisual {fireball}
+    public enum SpellVisual { fireball }
     public SpellVisual visual;
 
     public GameObject fireBolt;
@@ -29,13 +29,17 @@ public class BaseCard : MonoBehaviour
     private bool exampleCard = false;
 
     private bool pressed;
-    private float timePressedTillDescription = 5;
+    private float timePressedTillDescription = 1;
     private float currentTimePressed = 0;
 
     [HideInInspector] public bool inDiscardPile = false;
+    public GameObject cardHelp;
+    private GameObject thisCardHelp;
     // Start is called before the first frame update
     void Start()
     {
+        thisCardHelp = Instantiate(cardHelp, FindObjectOfType<Canvas>().transform);
+        thisCardHelp.SetActive(false);
         spellManage = FindObjectOfType<SpellManager>();
         cardManager = FindObjectOfType<GenerateSpellCards>();
         SetSecondaryEffect();
@@ -59,7 +63,7 @@ public class BaseCard : MonoBehaviour
     {
         if (!exampleCard)
         {
-            if(currentTimePressed < timePressedTillDescription)
+            if (currentTimePressed < timePressedTillDescription)
             {
                 StartCoroutine(MouseRelease());
                 spellManage.Spawn(word);
@@ -111,7 +115,7 @@ public class BaseCard : MonoBehaviour
             currentTimePressed += Time.deltaTime;
             yield return new WaitForSeconds(0);
 
-            if(currentTimePressed >= timePressedTillDescription)
+            if (currentTimePressed >= timePressedTillDescription)
             {
                 OpenDescription();
             }
@@ -121,6 +125,8 @@ public class BaseCard : MonoBehaviour
     private void OpenDescription()
     {
         StopCoroutine(MouseRelease());
+        thisCardHelp.SetActive(true);
+        thisCardHelp.transform.parent.SetAsLastSibling();
         pressed = false;
     }
 
