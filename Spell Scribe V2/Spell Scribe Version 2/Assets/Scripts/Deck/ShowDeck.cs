@@ -14,16 +14,19 @@ public class ShowDeck : MonoBehaviour
 
     BaseCard tempCard;
     Vector3 newCardPosition;
-    public enum DifferentDecks{currentDeck, discard, fullDeck}
+    public enum DifferentDecks { drawPile, discard, fullDeck }
     public DifferentDecks whichDeck;
 
-    private Deck deck;
     public bool showDeck = true;
+    Deck deck;
+
+    public List<BaseCard> cards;
+
     // Start is called before the first frame update
     void Start()
     {
-        deck = FindObjectOfType<Deck>();
         FindDistanceBetweenCards();
+        deck = FindObjectOfType<Deck>();
     }
 
     private void FindDistanceBetweenCards()
@@ -34,42 +37,47 @@ public class ShowDeck : MonoBehaviour
         distanceBetweenCardsY = rect.rect.height / 5;
     }
 
-    public void ShowCards(List<BaseCard> cards)
+    public void ShowCards(List<BaseCard> cardsOrg)
     {
+        cards = new List<BaseCard>(cardsOrg);
         cardPanel.SetActive(true);
         cardPanel.transform.SetAsLastSibling();
         int numberOfCards = cards.Count;
         int currentCard = 0;
-        if(numberOfCards <= 5)
+        if (numberOfCards <= 5)
         {
-            for(int i = 0; i < numberOfCards; i++)
+            for (int i = 0; i < numberOfCards; i++)
             {
-                Debug.Log("First Spawning");
                 tempCard = Instantiate(cards[currentCard], cardPanel.transform);
                 newCardPosition.y = (0 + (distanceBetweenCardsY * 2));
                 newCardPosition.x = ((-distanceBetweenCardsX * 2) + (distanceBetweenCardsX * i));
                 currentCard++;
                 Debug.Log(newCardPosition);
                 tempCard.GetComponent<RectTransform>().anchoredPosition = newCardPosition;
-                Destroy(tempCard.GetComponent<BaseCard>());
+                tempCard.GetComponent<BaseCard>().ExampleCard();
             }
         }
 
         else
         {
-            for(int row = 0; row <= (numberOfCards/5); row++)
+            for (int row = 0; row <= (numberOfCards / 5); row++)
             {
                 for (int coll = 0; coll < 4; coll++)
                 {
-                    Debug.Log("Second Spawning");
+                    if (cards.Count < currentCard + 1)
+                    {
+                        return;
+                    }
                     tempCard = Instantiate(cards[currentCard], cardPanel.transform);
                     newCardPosition.y = ((distanceBetweenCardsY * 2) - (distanceBetweenCardsY * row));
                     newCardPosition.x = ((-distanceBetweenCardsX * 2) + (distanceBetweenCardsX * coll));
                     currentCard++;
                     tempCard.GetComponent<RectTransform>().anchoredPosition = newCardPosition;
+                    tempCard.GetComponent<BaseCard>().ExampleCard();
                 }
             }
         }
+
     }
 
     public void UnShow()
@@ -91,8 +99,8 @@ public class ShowDeck : MonoBehaviour
         {
             switch (whichDeck)
             {
-                case DifferentDecks.currentDeck:
-                    ShowCards(deck._spellDeck);
+                case DifferentDecks.drawPile:
+                    ShowCards(deck.drawPile);
                     break;
                 case DifferentDecks.discard:
                     ShowCards(deck.discardPile);

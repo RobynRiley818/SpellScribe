@@ -19,6 +19,8 @@ public abstract class SecondarySpellEffects : MonoBehaviour
     protected void SetBaseEffect(int newBase) { baseEffect = newBase;}
     protected void SetIncreasePerLevel(int increasePerLevel) { increasePerSpellLevel = increasePerLevel;}
 }
+
+#region Support Spell Effects
 public class HealEffect : SecondarySpellEffects
 {
     public override void Awake()
@@ -37,4 +39,53 @@ public class HealEffect : SecondarySpellEffects
     {
         FindObjectOfType<Player>().TakeDamage(-SpellScaling());
     }
+
+    #endregion
+}
+
+#region Offensive Spell Effects
+public class StunEffect : SecondarySpellEffects
+{
+    ModifierVisualBehavior modVisual;
+    public override void Awake()
+    {
+        modVisual = FindObjectOfType<ModifierVisualBehavior>();
+        SetBaseEffect(1);
+        SetIncreasePerLevel(0);
+    }
+
+    public override string GetDescription()
+    {
+        description = "Stun " + SpellScaling();
+        return description;
+    }
+
+    public override void SpellEffect()
+    {
+        modVisual.AddModd(ModifierVisualBehavior.EnemyModTypes.stun, SpellScaling());
+    }
+}
+
+public class BurnEffct : SecondarySpellEffects
+{
+    ModifierVisualBehavior modVisual;
+    public override void Awake()
+    {
+        modVisual = FindObjectOfType<ModifierVisualBehavior>();
+        SetBaseEffect(2);
+        SetIncreasePerLevel(1);
+    }
+
+    public override string GetDescription()
+    {
+        description = "<color=red>Burn " + SpellScaling() + "</color>"; 
+        return description;
+    }
+
+    public override void SpellEffect()
+    {
+        modVisual.AddModd(ModifierVisualBehavior.EnemyModTypes.burn, SpellScaling());
+    }
+
+    #endregion
 }

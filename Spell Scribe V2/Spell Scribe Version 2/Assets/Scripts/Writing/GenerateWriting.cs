@@ -17,7 +17,7 @@ public class GenerateWriting : MonoBehaviour
 
     public LineRenderer current;
 
-    List<LineRenderer> drawn;
+    [HideInInspector] public List<LineRenderer> drawn;
 
     Vector3 mousePos;
 

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Deck : MonoBehaviour
 {
     public List<BaseCard> SpellDeck;
-    public List<BaseCard> _spellDeck;
+    public List<BaseCard> drawPile;
     public List<BaseCard> discardPile;
 
     private int deckSize;
@@ -23,8 +23,8 @@ public class Deck : MonoBehaviour
 
     public void ResetDecks()
     {
-        _spellDeck = new List<BaseCard>(SpellDeck);
-        deckSize = _spellDeck.Count;
+        drawPile = new List<BaseCard>(SpellDeck);
+        deckSize = drawPile.Count;
         nextCard = 0;
         newHand.Clear();
         discardPile.Clear();
@@ -36,17 +36,19 @@ public class Deck : MonoBehaviour
 
         for (int i = 0; i < 5; i++)
         {
-            if (_spellDeck.Count > 0)
+            if (drawPile.Count > 0)
             {
-                newHand.Add(_spellDeck[nextCard]);
-                _spellDeck.RemoveAt(nextCard);
+                newHand.Add(drawPile[nextCard]);
+                drawPile.RemoveAt(nextCard);
+                newHand[nextCard].GetComponent<BaseCard>().ResetCard();
             }
 
             else
             {
                 ShuffleDiscard();
-                newHand.Add(_spellDeck[nextCard]);
-                _spellDeck.RemoveAt(nextCard);
+                newHand.Add(drawPile[nextCard]);
+                drawPile.RemoveAt(nextCard);
+                newHand[nextCard].GetComponent<BaseCard>().ResetCard();
             }
         }
         return newHand;
@@ -68,19 +70,19 @@ public class Deck : MonoBehaviour
             discardPile[randomIndex] = temp;
         }
 
-        _spellDeck = new List<BaseCard>(discardPile);
+        drawPile = new List<BaseCard>(discardPile);
         nextCard = 0;
         discardPile.Clear();
     }
 
     public void ShuffleDeck()
     {
-        for (int i = 0; i < _spellDeck.Count; i++)
+        for (int i = 0; i < drawPile.Count; i++)
         {
-            BaseCard temp = _spellDeck[i];
-            int randomIndex = Random.Range(i, _spellDeck.Count);
-            _spellDeck[i] = _spellDeck[randomIndex];
-            _spellDeck[randomIndex] = temp;
+            BaseCard temp = drawPile[i];
+            int randomIndex = Random.Range(i, drawPile.Count);
+            drawPile[i] = drawPile[randomIndex];
+            drawPile[randomIndex] = temp;
         }
     }
 
@@ -88,7 +90,7 @@ public class Deck : MonoBehaviour
     {
         for(int i = 0; i < 5; i++)
         {
-            if(card.thisSpells == newHand[i].thisSpells)
+            if(card.thisSpellsSecondaryEffect == newHand[i].thisSpellsSecondaryEffect)
             {
                 if(card.word == newHand[i].word)
                 {
@@ -105,20 +107,21 @@ public class Deck : MonoBehaviour
     public BaseCard DrawOneCard()
     {
         BaseCard newCard;
-        if (_spellDeck.Count > 0)
+        if (drawPile.Count > 0)
         {
-            newCard = _spellDeck[0];
-            _spellDeck.RemoveAt(0);
+            newCard = drawPile[0];
+            drawPile.RemoveAt(0);
         }
 
         else
         {
             ShuffleDiscard();
-            newCard = _spellDeck[0];
-            _spellDeck.RemoveAt(0);
+            newCard = drawPile[0];
+            drawPile.RemoveAt(0);
 
         }
 
+        newCard.ResetCard();
         return newCard;
     }
 

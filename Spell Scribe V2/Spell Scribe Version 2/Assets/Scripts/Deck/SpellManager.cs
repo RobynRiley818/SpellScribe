@@ -14,7 +14,7 @@ public class SpellManager : MonoBehaviour
 
     public int spellDamage;
 
-    BaseCard[] cards;
+    [HideInInspector] public BaseCard[] cards;
 
     Enemy enemy;
 
@@ -22,14 +22,14 @@ public class SpellManager : MonoBehaviour
 
     [HideInInspector] public SecondarySpellEffects secondary;
 
-    public GameObject currentCard;
+    [HideInInspector] public GameObject currentCard;
 
     private Deck deck;
 
 
     [HideInInspector] public GameObject spellEffect;
     private Vector2 spellPosition = new Vector2(0, -3);
-
+    public GameObject cancelSpellImage;
     private void Start()
     {
         enemy = FindObjectOfType<Enemy>();
@@ -38,10 +38,10 @@ public class SpellManager : MonoBehaviour
         deck = FindObjectOfType<Deck>();
     }
 
-    GameObject wordInstance;
+    [HideInInspector] public GameObject wordInstance;
     public void Spawn(string word)
     {
-
+        cancelSpellImage.SetActive(true);
         for (int i = 0; i < words.Count; i++)
         {
             if (words[i].name == word)
@@ -68,6 +68,7 @@ public class SpellManager : MonoBehaviour
     {
         if (StateManager.currentState == StateManager.GameState.SpellCast & !testFix)
         {
+            cancelSpellImage.SetActive(false);
             testFix = true;
             GameObject temp = Instantiate(spellEffect);
             temp.transform.position = spellPosition;
@@ -76,12 +77,21 @@ public class SpellManager : MonoBehaviour
 
             Destroy(wordInstance);
             wordInstance = null;
+
+            currentCard.GetComponent<BaseCard>().inDiscardPile = true;
+            foreach (BaseCard card in cards)
+            {
+                if (!card.inDiscardPile)
+                {
+                    Destroy(card.gameObject);
+                }
+            }
         }
     }
 
     public void SpellDamage()
     {
-        StateManager.currentState = StateManager.GameState.EnemyTurn;
+
         enemy.TakeDamage(spellDamage);
         FindObjectOfType<Enemy>().StartEnemyTurn();
 

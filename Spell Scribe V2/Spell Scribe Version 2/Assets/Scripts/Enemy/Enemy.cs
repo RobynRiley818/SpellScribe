@@ -3,28 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[System.Serializable]
-public class EnAttack : MonoBehaviour
-{
-    //Amount of Health attack takes away
-    public int damage;
-
-    //Chance of attack being used each turn
-    public int chance;
-    public EnAttack()
-    {
-        damage = 0;
-        chance = 0;
-    }
-
-    public EnAttack(int dmg, int chn)
-    {
-        damage = dmg;
-        chance = chn;
-    }
-}
-
-
 public abstract class Enemy : MonoBehaviour
 {
     public int health;
@@ -35,8 +13,11 @@ public abstract class Enemy : MonoBehaviour
 
     SoundEffects soundEffects;
 
+    EnemyModifier[] currentModdifiers;
+    [HideInInspector] public bool stunned;
     private void Start()
     {
+        stunned = false;
         soundEffects = FindObjectOfType<SoundEffects>();
         healthBar.maxValue = health;
         healthBar.value = health;
@@ -46,7 +27,33 @@ public abstract class Enemy : MonoBehaviour
 
     public void StartEnemyTurn()
     {
-        Invoke("EnemyAttack", 1);
+        currentModdifiers = FindObjectsOfType<EnemyModifier>();
+        StartCoroutine(Mods());
+    }
+
+    IEnumerator Mods()
+    {
+        yield return new WaitForSeconds(1);
+        foreach (EnemyModifier em in currentModdifiers)
+        {
+            em.StartOfTurnEffect();
+
+            yield return new WaitForSeconds(1);
+        }
+
+        if (!stunned)
+        {
+            EnemyAttack();
+            StateManager.currentState = StateManager.GameState.EnemyTurn;
+        }
+
+        else
+        {
+            Debug.Log("The Enemy Skips there turn");
+            EndEnemyTurn();
+            stunned = false;
+        }
+   
     }
 
     public abstract void EnemyAttack();
@@ -56,7 +63,7 @@ public abstract class Enemy : MonoBehaviour
         health -= dam;
         healthBar.value = health;
         soundEffects.PlaySound("dewHurt");
-        if(health <= 0)
+        if (health <= 0)
         {
             EnemyDies();
         }
