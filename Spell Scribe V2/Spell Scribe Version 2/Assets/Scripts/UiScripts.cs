@@ -7,7 +7,6 @@ public class UiScripts : MonoBehaviour
 {
    public void PlayButton()
     {
-        //SceneManager.LoadScene("Map Scene");
-        Loading.instance.Show(SceneManager.LoadSceneAsync("Map Scene"));
+        Loading.instance.Show(SceneManager.LoadSceneAsync("ShowDialouge"));
     }
 }

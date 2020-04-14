@@ -35,10 +35,27 @@ public class BaseCard : MonoBehaviour
     [HideInInspector] public bool inDiscardPile = false;
     public GameObject cardHelp;
     private GameObject thisCardHelp;
+
+    private GameObject tempCard;
+
+    private TextMeshProUGUI helpWord;
+    private TextMeshProUGUI helpWordDef;
+    private TextMeshProUGUI helpEffect;
+    private TextMeshProUGUI helpEffectDef;
+    private TextMeshProUGUI helpDamageDef;
+
     // Start is called before the first frame update
     void Start()
     {
         thisCardHelp = Instantiate(cardHelp, FindObjectOfType<Canvas>().transform);
+
+        helpWord = thisCardHelp.transform.Find("Word").GetComponent<TextMeshProUGUI>();
+        helpWordDef = thisCardHelp.transform.Find("WordDef").GetComponent<TextMeshProUGUI>();
+
+        helpEffect = thisCardHelp.transform.Find("Effect").GetComponent<TextMeshProUGUI>();
+        helpEffectDef = thisCardHelp.transform.Find("EffectDef").GetComponent<TextMeshProUGUI>();
+        helpDamageDef = thisCardHelp.transform.Find("DamDef").GetComponent<TextMeshProUGUI>();
+
         thisCardHelp.SetActive(false);
         spellManage = FindObjectOfType<SpellManager>();
         cardManager = FindObjectOfType<GenerateSpellCards>();
@@ -48,6 +65,30 @@ public class BaseCard : MonoBehaviour
         secondaryDescription.text = thisSecondaryEffect.GetDescription();
         text.text = word;
         damageText.text = "" + damage;
+        currentTimePressed = 0;
+    }
+
+    private void OnEnable()
+    {
+        thisCardHelp = Instantiate(cardHelp, FindObjectOfType<Canvas>().transform);
+
+        helpWord = thisCardHelp.transform.Find("Word").GetComponent<TextMeshProUGUI>();
+        helpWordDef = thisCardHelp.transform.Find("WordDef").GetComponent<TextMeshProUGUI>();
+
+        helpEffect = thisCardHelp.transform.Find("Effect").GetComponent<TextMeshProUGUI>();
+        helpEffectDef = thisCardHelp.transform.Find("EffectDef").GetComponent<TextMeshProUGUI>();
+        helpDamageDef = thisCardHelp.transform.Find("DamDef").GetComponent<TextMeshProUGUI>();
+
+        thisCardHelp.SetActive(false);
+        spellManage = FindObjectOfType<SpellManager>();
+        cardManager = FindObjectOfType<GenerateSpellCards>();
+        SetSecondaryEffect();
+        SetVisual();
+        thisSecondaryEffect.spellLevel = spellLevel;
+        secondaryDescription.text = thisSecondaryEffect.GetDescription();
+        text.text = word;
+        damageText.text = "" + damage;
+        currentTimePressed = 0;
     }
 
     private void OnMouseDown()
@@ -73,6 +114,7 @@ public class BaseCard : MonoBehaviour
                 spellManage.currentCard = this.gameObject;
                 StopCoroutine(MouseRelease());
                 pressed = false;
+                currentTimePressed = 0;
             }
         }
     }
@@ -127,7 +169,21 @@ public class BaseCard : MonoBehaviour
         StopCoroutine(MouseRelease());
         thisCardHelp.SetActive(true);
         thisCardHelp.transform.parent.SetAsLastSibling();
+        tempCard = Instantiate(this.gameObject, thisCardHelp.transform);
+        tempCard.GetComponent<BaseCard>().exampleCard = true;
+        tempCard.transform.position = new Vector2(0, - 1);
+        tempCard.transform.localScale = new Vector3(tempCard.transform.localScale.x * 2, tempCard.transform.localScale.y * 2, tempCard.transform.localScale.z * 2);
         pressed = false;
+
+        SetDescriptions();
+    }
+
+    private void SetDescriptions()
+    {
+        helpWord.text = word;
+        helpWordDef.text = FindObjectOfType<Definitions>().GetDef("Be");
+        helpEffect.text = thisSecondaryEffect.GetName();
+        helpEffectDef.text = FindObjectOfType<Definitions>().GetEffect(thisSecondaryEffect.GetName(), thisSecondaryEffect.SpellScaling());
     }
 
     public void ResetCard()

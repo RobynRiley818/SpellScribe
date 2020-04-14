@@ -14,7 +14,9 @@ public abstract class SecondarySpellEffects : MonoBehaviour
     public abstract string GetDescription();
     public abstract void Awake();
 
-    protected int SpellScaling() {return baseEffect + (increasePerSpellLevel * spellLevel);}
+    public abstract string GetName();
+
+    public int SpellScaling() {return baseEffect + (increasePerSpellLevel * spellLevel);}
     public void SetLevel(int level) {spellLevel = level;}
     protected void SetBaseEffect(int newBase) { baseEffect = newBase;}
     protected void SetIncreasePerLevel(int increasePerLevel) { increasePerSpellLevel = increasePerLevel;}
@@ -33,6 +35,11 @@ public class HealEffect : SecondarySpellEffects
     {
         description = "Heal " + SpellScaling() + " Health";
         return description;
+    }
+
+    public override string GetName()
+    {
+        return "Heal";
     }
 
     public override void SpellEffect()
@@ -60,6 +67,11 @@ public class StunEffect : SecondarySpellEffects
         return description;
     }
 
+    public override string GetName()
+    {
+        return "Stun";
+    }
+
     public override void SpellEffect()
     {
         modVisual.AddModd(ModifierVisualBehavior.EnemyModTypes.stun, SpellScaling());
@@ -78,8 +90,13 @@ public class BurnEffct : SecondarySpellEffects
 
     public override string GetDescription()
     {
-        description = "<color=red>Burn " + SpellScaling() + "</color>"; 
+        description = "Burn " + SpellScaling(); 
         return description;
+    }
+
+    public override string GetName()
+    {
+        return "Burn";
     }
 
     public override void SpellEffect()
