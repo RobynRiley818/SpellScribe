@@ -11,7 +11,7 @@ public class Dialouge : MonoBehaviour
     private string tapToContinue = "Tap Screen To Continue";
 
     private float normalDialougeSpeed = .1f;
-    private float spedUpDialougeSpeed = .02f;
+    private float spedUpDialougeSpeed = .009f;
     private float currentDialougeSpeed = 0;
 
     private bool typingLine = false;

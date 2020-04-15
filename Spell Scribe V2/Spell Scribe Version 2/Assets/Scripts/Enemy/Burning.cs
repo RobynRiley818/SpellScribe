@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Burning : EnemyModifier
 {
+    public ParticleSystem buring;
     new private void Start()
     {
         base.Start();
@@ -13,6 +14,15 @@ public class Burning : EnemyModifier
     }
     public override void StartOfTurnEffect()
     {
+        var temp = Instantiate(buring, thisEnemy.transform.parent.transform);
+        temp.transform.position = this.transform.position;
+
+        Invoke("Damage", .1f);
+    }
+
+    private void Damage()
+    {
+        StateManager.currentState = StateManager.GameState.EnemyHit;
         modHolder = this.gameObject.transform.parent.gameObject.transform.GetComponent<ModifierHolder>();
         thisEnemy.TakeDamage(effectNum);
         ChangeBurnAmmount(-1);
@@ -22,7 +32,6 @@ public class Burning : EnemyModifier
             Destroy(this.gameObject);
         }
     }
-
     public void ChangeBurnAmmount(int change) {
         effectNum += change;
         modHolder.number.text = "" + effectNum;

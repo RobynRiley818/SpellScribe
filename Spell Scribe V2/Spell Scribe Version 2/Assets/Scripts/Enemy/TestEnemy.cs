@@ -6,10 +6,17 @@ public class TestEnemy : Enemy
 {
     public override void EnemyAttack()
     {
-        //Insert attack logic and attack animations
-
         player.TakeDamage(damage);
         Invoke("EndEnemyTurn", 1);
+    }
 
+    private void Heal()
+    {
+        TakeDamage(-3);
+    }
+
+    private void BasicAttack()
+    {
+        player.TakeDamage(damage);
     }
 }

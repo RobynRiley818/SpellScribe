@@ -230,7 +230,7 @@ PrefabInstance:
     - target: {fileID: 1964829429861558809, guid: 89f082f96ac83df42bcf010c0e39e1b8,
         type: 3}
       propertyPath: roomOptions.Array.data[0]
-      value: Test Scene 2
+      value: Test Scene 1
       objectReference: {fileID: 0}
     - target: {fileID: 1964829429818229307, guid: 89f082f96ac83df42bcf010c0e39e1b8,
         type: 3}
@@ -240,7 +240,7 @@ PrefabInstance:
     - target: {fileID: 1964829429818229307, guid: 89f082f96ac83df42bcf010c0e39e1b8,
         type: 3}
       propertyPath: roomOptions.Array.data[0]
-      value: Test Scene 3
+      value: Test Scene 1
       objectReference: {fileID: 0}
     - target: {fileID: 1964829430546100846, guid: 89f082f96ac83df42bcf010c0e39e1b8,
         type: 3}
@@ -275,7 +275,7 @@ PrefabInstance:
     - target: {fileID: 1964829430405089118, guid: 89f082f96ac83df42bcf010c0e39e1b8,
         type: 3}
       propertyPath: roomOptions.Array.data[0]
-      value: Test Scene 2
+      value: Test Scene 1
       objectReference: {fileID: 0}
     - target: {fileID: 1964829429645738156, guid: 89f082f96ac83df42bcf010c0e39e1b8,
         type: 3}
@@ -300,7 +300,7 @@ PrefabInstance:
     - target: {fileID: 1964829428719076666, guid: 89f082f96ac83df42bcf010c0e39e1b8,
         type: 3}
       propertyPath: roomOptions.Array.data[0]
-      value: Test Scene 2
+      value: Test Scene 1
       objectReference: {fileID: 0}
     - target: {fileID: 1964829429065473155, guid: 89f082f96ac83df42bcf010c0e39e1b8,
         type: 3}

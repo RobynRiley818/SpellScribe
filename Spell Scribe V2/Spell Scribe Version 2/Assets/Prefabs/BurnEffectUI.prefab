@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1509591423078859923}
   - component: {fileID: -4404040112432932026}
   m_Layer: 5
-  m_Name: BurnEffect
+  m_Name: BurnEffectUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60,6 +60,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modHolder: {fileID: 0}
   effectNum: 0
+  buring: {fileID: 8041511066918424211, guid: 897373418226db4478761b722c42eb65, type: 3}
 --- !u!1 &1509591423188962609
 GameObject:
   m_ObjectHideFlags: 0

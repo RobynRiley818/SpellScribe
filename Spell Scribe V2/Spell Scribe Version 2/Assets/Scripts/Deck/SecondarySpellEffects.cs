@@ -57,7 +57,7 @@ public class StunEffect : SecondarySpellEffects
     public override void Awake()
     {
         modVisual = FindObjectOfType<ModifierVisualBehavior>();
-        SetBaseEffect(1);
+        SetBaseEffect(3);
         SetIncreasePerLevel(0);
     }
 

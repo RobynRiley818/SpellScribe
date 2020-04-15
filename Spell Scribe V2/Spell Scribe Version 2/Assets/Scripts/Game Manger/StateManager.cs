@@ -6,7 +6,7 @@ public class StateManager : MonoBehaviour
 {
     private static StateManager instance;
 
-    public enum GameState { Menu, SpellSelect, Writing, WordFill, SpellCast, EnemyTurn };
+    public enum GameState { Menu, SpellSelect, Writing, WordFill, SpellCast, EnemyHit, EnemyTurn, EnemyAttacking};
 
     public static GameState currentState;
 

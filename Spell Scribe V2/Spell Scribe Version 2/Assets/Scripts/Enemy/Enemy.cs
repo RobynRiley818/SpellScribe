@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public abstract class Enemy : MonoBehaviour
 {
@@ -15,12 +16,17 @@ public abstract class Enemy : MonoBehaviour
 
     EnemyModifier[] currentModdifiers;
     [HideInInspector] public bool stunned;
+
+    public TextMeshProUGUI healthText;
+
+
     private void Start()
     {
         stunned = false;
         soundEffects = FindObjectOfType<SoundEffects>();
         healthBar.maxValue = health;
         healthBar.value = health;
+        healthText.text = "Health: " + healthBar.value + "/" + healthBar.maxValue;
         player = FindObjectOfType<Player>();
         turnManager = FindObjectOfType<TurnManager>();
     }
@@ -33,18 +39,21 @@ public abstract class Enemy : MonoBehaviour
 
     IEnumerator Mods()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1.25f);
+        StateManager.currentState = StateManager.GameState.EnemyTurn;
+        yield return new WaitForSeconds(.5f);
         foreach (EnemyModifier em in currentModdifiers)
         {
             em.StartOfTurnEffect();
 
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(1.25f);
+            StateManager.currentState = StateManager.GameState.EnemyTurn;
         }
 
         if (!stunned)
         {
-            EnemyAttack();
-            StateManager.currentState = StateManager.GameState.EnemyTurn;
+            Invoke("EnemyAttack", .8f);
+            StateManager.currentState = StateManager.GameState.EnemyAttacking;
         }
 
         else
@@ -60,6 +69,7 @@ public abstract class Enemy : MonoBehaviour
 
     public void TakeDamage(int dam)
     {
+        StateManager.currentState = StateManager.GameState.EnemyHit;
         health -= dam;
         healthBar.value = health;
         soundEffects.PlaySound("dewHurt");
@@ -67,6 +77,8 @@ public abstract class Enemy : MonoBehaviour
         {
             EnemyDies();
         }
+
+        healthText.text = "Health " + healthBar.value + "/" + healthBar.maxValue;
     }
 
     private void EnemyDies()

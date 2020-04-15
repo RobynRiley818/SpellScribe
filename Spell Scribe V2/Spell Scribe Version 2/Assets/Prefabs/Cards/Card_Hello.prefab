@@ -255,9 +255,12 @@ MonoBehaviour:
   secondaryDescription: {fileID: 3251540259327002403}
   damage: 2
   spellLevel: 2
-  thisSpells: 0
+  thisSpellsSecondaryEffect: 0
   visual: 0
   fireBolt: {fileID: 141530, guid: 369eee557c4d41c479225bf744fa6a5f, type: 3}
+  inDiscardPile: 0
+  cardHelp: {fileID: 3330722948550677126, guid: f7c4f3c0131a92b4b9a07f284d3fcea6,
+    type: 3}
 --- !u!61 &3151832617300789832
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -515,8 +518,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

@@ -11,8 +11,11 @@ public class DialougeManager : MonoBehaviour
     private int currentDialougeInt;
     private bool onDialouge;
 
+    private bool loadingNextScene;
+
     void Start()
     {
+        loadingNextScene = false;
         TurnOffDialouges();
         currentDialougeInt = 0;
         onDialouge = false;
@@ -47,7 +50,12 @@ public class DialougeManager : MonoBehaviour
 
             else
             {
-                LoadNextScene();
+                if (!loadingNextScene)
+                {
+                    loadingNextScene = true;
+                    LoadNextScene();
+                }
+               
             }
         }
     }

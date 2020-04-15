@@ -25,14 +25,21 @@ public class DeweyController : MonoBehaviour
     {
         if(dew.health > 0)
         {
-            if (StateManager.currentState == StateManager.GameState.EnemyTurn)
+            if (StateManager.currentState == StateManager.GameState.EnemyAttacking)
             {
                 dewAttack.SetActive(true);
                 dewHurt.SetActive(false);
                 dewIdle.SetActive(false);
             }
 
-            else if (StateManager.currentState == StateManager.GameState.SpellCast)
+            else if(StateManager.currentState == StateManager.GameState.EnemyTurn)
+            {
+                dewAttack.SetActive(false);
+                dewHurt.SetActive(false);
+                dewIdle.SetActive(true);
+            }
+
+            else if (StateManager.currentState == StateManager.GameState.EnemyHit)
             {
                 dewAttack.SetActive(false);
                 dewHurt.SetActive(true);

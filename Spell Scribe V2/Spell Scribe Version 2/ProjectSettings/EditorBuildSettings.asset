@@ -35,4 +35,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ShowDialouge.unity
     guid: cc221cc525aeccf46bc7fe5c4a6781b2
+  - enabled: 1
+    path: Assets/__DELETED_GUID_Trash/39e7bb9128b67204595462b428a1972e
+    guid: 39e7bb9128b67204595462b428a1972e
+  - enabled: 1
+    path: Assets/Scenes/Test Scene 2.unity
+    guid: 2f4418b98d48f7f4196dab6d08b7ec14
+  - enabled: 1
+    path: Assets/Scenes/Test Scene 3.unity
+    guid: 3663bb035c6ee254b89d0ea930aec39b
+  - enabled: 1
+    path: Assets/Scenes/Test Scene 1.unity
+    guid: a4f7a3b9e6ca2f74b85fe6a5090ec330
   m_configObjects: {}

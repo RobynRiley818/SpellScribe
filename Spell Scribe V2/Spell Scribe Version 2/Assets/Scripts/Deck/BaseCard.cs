@@ -104,7 +104,7 @@ public class BaseCard : MonoBehaviour
     {
         if (!exampleCard)
         {
-            if (currentTimePressed < timePressedTillDescription)
+            if (currentTimePressed < timePressedTillDescription && !thisCardHelp.activeSelf)
             {
                 StartCoroutine(MouseRelease());
                 spellManage.Spawn(word);
@@ -174,6 +174,7 @@ public class BaseCard : MonoBehaviour
         tempCard.transform.position = new Vector2(0, - 1);
         tempCard.transform.localScale = new Vector3(tempCard.transform.localScale.x * 2, tempCard.transform.localScale.y * 2, tempCard.transform.localScale.z * 2);
         pressed = false;
+        currentTimePressed = 0;
 
         SetDescriptions();
     }
@@ -183,6 +184,7 @@ public class BaseCard : MonoBehaviour
         helpWord.text = word;
         helpWordDef.text = FindObjectOfType<Definitions>().GetDef("Be");
         helpEffect.text = thisSecondaryEffect.GetName();
+        helpDamageDef.text = "Deals: " + damage + " To The Enemy's Health";
         helpEffectDef.text = FindObjectOfType<Definitions>().GetEffect(thisSecondaryEffect.GetName(), thisSecondaryEffect.SpellScaling());
     }
 

@@ -30,12 +30,13 @@ public class Stunned : EnemyModifier
         if(effectNum >= maxStunAmmount)
         {
             StunEffect();
-            effectNum -= maxStunAmmount;
+            ChangeStunAmmount(-maxStunAmmount);
 
             if (effectNum <= 0)
             {
                 Destroy(this.gameObject);
             }
+
         }
     }
 
